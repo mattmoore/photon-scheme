@@ -22,6 +22,8 @@
 (print "argv: " (argv))
 (print "command-line-arguments: " (command-line-arguments))
 
+(define header? (lambda (x) (equal? 'header (car x))))
+
 (receive
   (options operands)
   (args:parse (command-line-arguments) opts)
@@ -29,7 +31,7 @@
     "accessid: " (alist-ref 'accessid options) #\newline
     "key: "      (alist-ref 'key      options) #\newline
     "url: "      (alist-ref 'url      options) #\newline
-    "header: "   (alist-ref 'header   options) #\newline
+    "header: "   (filter header? options) #\newline
     "version: "  (alist-ref 'version  options) #\newline
     (http-get (alist-ref 'url options))
   )
