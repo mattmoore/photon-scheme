@@ -1,5 +1,5 @@
 (import chicken scheme)
-(declare (uses client config))
-(use args)
+(declare (uses client command-grammar))
 
-(print (http-get flags-url))
+(print
+  (http-get flag-url (symbolize-keys (parse-headers flag-headers))))
