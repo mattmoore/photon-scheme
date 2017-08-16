@@ -18,7 +18,7 @@
       content-type
       content-md5
       url
-      timestamp))))
+      (date->rfc-1123 timestamp)))))
 
 (define url-path
   (lambda (x) (conc "/" (s-join "/" (cdr (uri-path (uri-reference x)))))))
@@ -36,4 +36,4 @@
             content-type
             (content-md5 body)
             (url-path url)
-            (date->rfc-1123 timestamp)))))))
+            timestamp))))))
